@@ -25,18 +25,4 @@ const PrivateRoutes = () => {
   );
 };
 
-// PrivateRoutes.defaultProps = {
-//   isAuthenticated: '',
-// };
-
-// PrivateRoutes.propsTypes = {
-//   isAuthenticated: PropTypes.string,
-// };
-
-// const mapStateToProps = state => ({
-//   isAuthenticated: isAuthenticated(state),
-// });
-
-// export default connect(mapStateToProps)(PrivateRoutes);
-
 export default PrivateRoutes;

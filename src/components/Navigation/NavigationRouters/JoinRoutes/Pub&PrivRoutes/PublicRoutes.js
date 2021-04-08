@@ -33,4 +33,21 @@ const PublicRoutes = () => {
   );
 };
 
+// const PublicRoutes = () => {
+//   const isAuthorized = useSelector(isAuthenticated);
+
+//   return routes.map(
+//     ({ name, exact, path, children, restricted, redirectTo, priv }) =>
+//       !priv && (
+//         <Route exact={exact} path={path} key={name}>
+//           {!!isAuthorized && restricted ? (
+//             <Redirect to={redirectTo} />
+//           ) : (
+//             children
+//           )}
+//         </Route>
+//       ),
+//   );
+// };
+
 export default PublicRoutes;

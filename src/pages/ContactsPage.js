@@ -21,12 +21,10 @@ const ContactsPage = () => {
 
   return (
     <Layout>
-      <Layout>
-        <ContactForm />
-        {loading && <Spinner />}
-        {errorMessage && <ErrorPage />}
-        {totalCount !== 0 && <ContactList />}
-      </Layout>
+      <ContactForm />
+      {loading && <Spinner />}
+      {errorMessage && <ErrorPage />}
+      {totalCount !== 0 && <ContactList />}
     </Layout>
   );
 };

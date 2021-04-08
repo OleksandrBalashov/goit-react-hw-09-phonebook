@@ -5,7 +5,6 @@ import Navigation from '../Navigation';
 import { isAuthenticated } from '../../redux/auth';
 import Layout from '../Layout';
 import UserMenu from '../UserMenu';
-import PropTypes from 'prop-types';
 
 import styles from './AppBar.module.css';
 
@@ -21,14 +20,6 @@ const AppBar = () => {
       </Layout>
     </header>
   );
-};
-
-AppBar.defaultProps = {
-  isAuthenticated: null,
-};
-
-AppBar.propTypes = {
-  isAuthenticated: PropTypes.string,
 };
 
 export default AppBar;

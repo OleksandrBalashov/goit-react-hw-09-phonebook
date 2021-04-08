@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { registerUser } from '../redux/auth';
 import Spinner from '../components/Spinner';
@@ -23,18 +23,20 @@ const RegisterPage = () => {
     setState({ ...state, [name]: value });
   };
 
-  const handleSubmitForm = e => {
-    e.preventDefault();
+  const handleSubmitForm = useCallback(
+    e => {
+      e.preventDefault();
 
-    const { name, email, password } = state;
+      const { name, email, password } = state;
 
-    if (name === '' && email === '' && password === '') return;
+      if (name === '' && email === '' && password === '') return;
 
-    dispatch(registerUser(state));
-    reset();
-  };
+      dispatch(registerUser(state));
 
-  const reset = () => setState({ ...initialState });
+      setState({ ...initialState });
+    },
+    [dispatch, state],
+  );
 
   return (
     <div className={styles.wrap}>

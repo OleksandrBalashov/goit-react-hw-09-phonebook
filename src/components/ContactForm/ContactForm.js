@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import {
   getEditContact,
@@ -32,20 +32,22 @@ const ContactForm = () => {
     setState(prev => ({ ...prev, [name]: value }));
   };
 
-  const handlerSubmitContactFrom = e => {
-    e.preventDefault();
+  const handlerSubmitContactFrom = useCallback(
+    e => {
+      e.preventDefault();
 
-    const { name, number, id } = state;
-    if (name === '' && number === '') return;
+      const { name, number, id } = state;
+      if (name === '' && number === '') return;
 
-    !!id
-      ? dispatch(patchContacts(id, { name, number }))
-      : dispatch(addContact(state));
+      !!id
+        ? dispatch(patchContacts(id, { name, number }))
+        : dispatch(addContact(state));
 
-    reset();
-  };
+      setState({ ...initialState });
+    },
 
-  const reset = () => setState({ ...initialState });
+    [state, dispatch],
+  );
 
   return (
     <div className={styles.wrap}>

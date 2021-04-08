@@ -1,22 +1,14 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import ContactFilter from '../FilterContacts';
-import {
-  getVisibleContacts,
-  editContact,
-  deleteContact,
-} from '../../redux/contacts';
+import { getVisibleContacts, deleteContact } from '../../redux/contacts';
+import EditButton from './EditButton';
 import styles from './Contacts.module.css';
 
 const ContactList = () => {
   const contacts = useSelector(getVisibleContacts);
   const dispatch = useDispatch();
   const onDelete = e => dispatch(deleteContact(e.target.dataset.id));
-
-  const filterEditContact = e => {
-    const contact = contacts.find(({ id }) => id === e.target.dataset.id);
-    dispatch(editContact(contact));
-  };
 
   return (
     <>
@@ -27,14 +19,7 @@ const ContactList = () => {
             <p className={styles.text}>
               {name}: {number}
             </p>
-            <button
-              data-id={id}
-              type="button"
-              className={styles.button + ' ' + styles.buttonEdit}
-              onClick={filterEditContact}
-            >
-              Edit
-            </button>
+            <EditButton id={id} />
             <button
               data-id={id}
               type="button"

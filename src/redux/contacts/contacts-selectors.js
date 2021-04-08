@@ -5,6 +5,12 @@ export const getFilter = state => state.contacts.filter;
 export const getTotalCount = state => getItems(state).length;
 export const getEditContact = state => state.contacts.editContact;
 
+export const getFindEditContact = (state, contactId) => {
+  const contacts = getItems(state);
+
+  return contacts.find(({ id }) => id === contactId);
+};
+
 export const getVisibleContacts = createSelector(
   [getItems, getFilter],
   (items, filter) => {

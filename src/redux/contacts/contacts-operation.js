@@ -31,12 +31,16 @@ export const fetchContacts = () => async dispatch => {
   }
 };
 
+function findRepeatContact(items, contactName) {
+  return items.find(({ name }) => name === contactName);
+}
+
 export const addContact = contact => async (dispatch, getState) => {
   const {
     contacts: { items },
   } = getState();
 
-  if (items.find(({ name }) => name === contact.name)) {
+  if (findRepeatContact(items, contact.name)) {
     alert(`${contact.name} is already in contacts`);
     return;
   }

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { loginUser } from '../redux/auth';
 import Spinner from '../components/Spinner';
@@ -22,19 +22,20 @@ const LoginPage = () => {
     setState({ ...state, [name]: value });
   };
 
-  const handleSubmitForm = e => {
-    e.preventDefault();
+  const handleSubmitForm = useCallback(
+    e => {
+      e.preventDefault();
 
-    const { email, password } = state;
+      const { email, password } = state;
 
-    if (email === '' && password === '') return;
+      if (email === '' && password === '') return;
 
-    dispatch(loginUser(state));
+      dispatch(loginUser(state));
 
-    reset();
-  };
-
-  const reset = () => setState({ ...initialState });
+      setState({ ...initialState });
+    },
+    [state, dispatch],
+  );
 
   return (
     <div className={styles.wrap}>
